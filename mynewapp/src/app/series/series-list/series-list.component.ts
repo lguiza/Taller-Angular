@@ -15,6 +15,7 @@ import { CommonModule } from '@angular/common';
 export class SeriesListComponent implements OnInit {
   series: Serie[] = [];
   promedioTemporadas: number = 0;
+  selectedSerie: Serie | null = null;
 
   constructor(private seriesService: SeriesService) { }
 
@@ -29,4 +30,11 @@ export class SeriesListComponent implements OnInit {
     const total = this.series.reduce((acc, serie) => acc + serie.seasons, 0);
     this.promedioTemporadas = this.series.length > 0 ? total / this.series.length : 0;
   }
+  selectSerie(serie: Serie): void {
+    this.selectedSerie = serie;
+  }
+  closeDetails(): void {
+    this.selectedSerie = null;
+  }
+
 }

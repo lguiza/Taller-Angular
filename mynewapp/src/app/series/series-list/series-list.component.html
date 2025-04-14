@@ -1,5 +1,7 @@
 <div class="container mt-3">
     <h1>Listado de Series</h1>
+  
+    <!-- Tabla con el listado de series -->
     <table class="table table-striped">
       <thead>
         <tr>
@@ -12,13 +14,27 @@
       <tbody>
         <tr *ngFor="let serie of series">
           <td>{{ serie.id }}</td>
-          <td>{{ serie.name }}</td>
+          <!-- Al hacer clic en el nombre se ejecuta el método selectSerie -->
+          <td (click)="selectSerie(serie)" style="cursor: pointer; color: blue;">{{ serie.name }}</td>
           <td>{{ serie.channel }}</td>
           <td>{{ serie.seasons }}</td>
         </tr>
       </tbody>
     </table>
+  
+    <!-- Sección para mostrar el promedio de temporadas -->
     <div class="alert alert-info text-center">
       <strong>Promedio de temporadas:</strong> {{ promedioTemporadas.toFixed(2) }}
+    </div>
+  
+    <!-- Card que muestra la información adicional de la serie seleccionada -->
+    <div *ngIf="selectedSerie" class="card mt-4">
+      <img [src]="selectedSerie.poster" class="card-img-top" [alt]="selectedSerie.name">
+      <div class="card-body">
+        <h5 class="card-title">{{ selectedSerie.name }}</h5>
+        <p class="card-text">{{ selectedSerie.description }}</p>
+        <a [href]="selectedSerie.webpage" target="_blank" class="btn btn-primary">Ver Más</a>
+        <button (click)="closeDetails()" class="btn btn-secondary ms-2">Cerrar</button>
+      </div>
     </div>
   </div>
