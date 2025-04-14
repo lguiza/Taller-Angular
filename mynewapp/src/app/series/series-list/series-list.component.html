@@ -1,8 +1,7 @@
 <div class="container mt-3">
     <h1 class="mb-4">Listado de Series</h1>
     <div class="row">
-      <!-- Columna izquierda: Listado de series -->
-      <div class="col-md-8">
+      <div class="col-8">
         <table class="table table-striped">
           <thead>
             <tr>
@@ -15,7 +14,6 @@
           <tbody>
             <tr *ngFor="let serie of series">
               <td>{{ serie.id }}</td>
-              <!-- Cada nombre es clickable y se resalta para indicar interactividad -->
               <td (click)="selectSerie(serie)" style="cursor: pointer; color: blue;">
                 {{ serie.name }}
               </td>
@@ -29,14 +27,13 @@
         </div>
       </div>
   
-      <!-- Columna derecha: Detalle de la serie seleccionada -->
-      <div class="col-md-4">
+      <div class="col-4">
         <div *ngIf="selectedSerie" class="card">
-          <!-- Ajustamos la imagen a un tamaño más pequeño -->
+
           <img [src]="selectedSerie.poster"
                class="card-img-top img-fluid"
                [alt]="selectedSerie.name"
-               style="max-height: 200px; object-fit: cover;">
+               style="max-height: 150px; object-fit: cover;">
           <div class="card-body">
             <h5 class="card-title">{{ selectedSerie.name }}</h5>
             <p class="card-text">{{ selectedSerie.description }}</p>
